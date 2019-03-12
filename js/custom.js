@@ -36,7 +36,11 @@ function ready(){
 function confirm(event){
 
 
-
+    if ( gName == "Select" || gbodyStyle == "Select" ){
+        alert("please enter a body style and body color");
+        return;
+    } else 
+    {
     var gName = document.getElementById("customName").value;
     var gbodyStyle = document.getElementById("bodyStyle").value;
     var gbodyColor = document.getElementById("bodyColor").value;
@@ -47,7 +51,7 @@ function confirm(event){
 
     var customDesc = "Body Style: " + gbodyStyle + ", Color: " + gbodyColor + ", Fret Board: " + gFretBoard + ", Fret Board Inlay: " + gInlay + ", Hardware: " + gHardware + ", Fret Type: " + gFretType;
 
-    
+
 
     var ckVal = GetCookie("BtnClk");
     if (ckVal == null || isNaN(ckVal)){
@@ -97,7 +101,7 @@ function confirm(event){
 
         updateTotal();
        loadCart();
-
+    }
 
 }
 
