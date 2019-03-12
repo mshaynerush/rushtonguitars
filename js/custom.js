@@ -36,7 +36,7 @@ function ready(){
 function confirm(event){
 
 
-    if ( gName == "Select" || gbodyStyle == "Select" ){
+    if ( gName == "" || gbodyStyle == "" ){
         alert("please enter a body style and body color");
         return;
     } else 
