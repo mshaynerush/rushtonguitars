@@ -1,0 +1,62 @@
+<html>
+<head>
+<script>
+
+function getCookieVal (offset) {
+   var endstr = document.cookie.indexOf (";", offset);
+   if (endstr == -1)
+      endstr = document.cookie.length;
+   return unescape(document.cookie.substring(offset, endstr));
+}
+
+function checkCookie(){
+    var cookieEnabled = navigator.cookieEnabled;
+    if (cookieEnabled){ 
+        document.cookie = name;
+        cookieEnabled = document.cookie.indexOf(name)!=-1;
+    }
+    return cookieEnabled;
+    
+}
+
+function getCookie(name){
+
+if (checkCookie())
+	{console.log(name);
+   var arg = name + "=";
+
+   var alen = arg.length;
+   var clen = document.cookie.length;
+   var i = 0;
+   while (i < clen) {
+      var j = i + alen;
+      if (document.cookie.substring(i, j) == arg)
+         return getCookieVal (j);
+      i = document.cookie.indexOf(" ", i) + 1;
+      if (i == 0) break;
+   }
+   return null;
+	}
+   else
+     return sessionStorage.getItem(name);
+ 	
+}
+
+			
+	var len = document.cookie.split(';').length;
+	for ( var i = 0; i < len; i++){
+
+		var mycookieIndex[i] = new Array(getCookie("Name" + i));
+
+
+
+}
+
+
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

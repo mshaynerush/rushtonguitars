@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<head>
+	 <meta charset="UTF-8"> 
+	<title>Rushton Guitars - All Things Guitar - Talent Not Included</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+<script src="js/script.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Luckiest+Guy');
+</style>
+
+	<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+
+
+	<div class="container-fluid bg-black banner-top">
+
+		<div class="container">
+
+			<div class="row">&nbsp;</div>
+			<div class="row">&nbsp;</div>
+				<div class="row">
+
+					<div class="col-sm-12 col-lg-6">
+						<img src="img/rushtonGuitarLogo3.png" width="75%" height="75%" id="logo"/>
+					</div>
+					<div class="col-sm-12 col-lg-6">
+
+						<h1>All Things Guitar - Talent Not Included</h1>
+
+					</div>
+
+				</div>
+		</div>
+	</div>
+
+<div class="container-fluid bg-black">
+		<div class="container">
+			<div class="row">
+				
+				<nav class="navbar">
+
+					<!--<div class="brand-title">Brand Name
+
+					</div>-->
+
+					<a href="#" class="toggle-button">
+						<span class="bar"></span>
+						<span class="bar"></span>
+						<span class="bar"></span>
+					</a>
+
+					<div class="navbar-links">
+
+						<ul>
+							<li><a href="#">Home</a></li>
+							<li><a href="catalog.html">Catalog</a></li>
+							<li><a href="custom.html">Custom Shop</a></li>
+						</ul>
+
+					</div>
+
+				</nav>
+
+			</div>
+
+		</div>
+
+	</div>
+
+<div class="clear: fix"></div>
+
+
+	<div class="container main-content">
+
+		<div class="row">&nbsp;</div>
+
+
+		<div class="row">
+			<div class="col-lg-12">
+				<h2>Featured Items</h2>
+			</div>
+		</div>
+
+		<div class="row">
+			<p class="thankyou">Thank you for your Order!</p>
+		</div>
+		<div class="row">
+				<p> Your Axe is on the way and should get to you in</p>
+		</div>
+		<div class="row">
+				<p id="countdown"></p>
+		</div>
+					<script>
+
+/* ----------------------------------------------
+function secondPassed(){
+purpose:	Count down clock for delivery
+author:	
+parameters:		none
+---------------------------------------------- */ 
+// 1800 seconds in 30 minutes
+var seconds = 60 * 60;
+// seconds set at 20 for testing
+//var seconds = 20;
+
+
+function secondPassed() {
+// Calculate the number of days left
+    var days=Math.floor(seconds / 86400) /23; 
+// After deducting the days calculate the number of hours left
+    var hours = Math.floor((seconds - (days * 86400 ))/3600) 
+// After days and hours , how many minutes are left 
+    var minutes = Math.floor((seconds - (days * 86400 ) - (hours *3600 ))/60)
+// Finally how many seconds left after removing days, hours and minutes. 
+   var secs = Math.floor((seconds - (days * 86400 ) - (hours *3600 ) - (minutes*60)))
+
+   var x = 	minutes + " Minutes and " + secs + " Seconds ";
+   document.getElementById('countdown').innerHTML = x;
+
+   
+	// create an alternate display if PC has not arrived
+	if (seconds == 0) {
+   	clearInterval(countdownTimer);
+      document.getElementById('countdown').innerHTML = "Please call us, your PC should have arrived!";
+   }
+	else {
+   	seconds--;
+   }
+	
+	return true;
+	
+}
+ 
+var countdownTimer = setInterval('secondPassed()', 1000);
+
+	
+
+ 
+var countdownTimer = setInterval('secondPassed()', 1000);
+
+
+					</script>
+		
+	
+		
+
+	</div>
+
+
+
+<div class="continer-fluid">
+	
+	<div class="footer banner-top bg-black"><p align="center">Copyright &copy;2019</p></div>
+
+</div>
+
+</body>
+
+</html>
