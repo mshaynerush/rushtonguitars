@@ -36,11 +36,7 @@ function ready(){
 function confirm(event){
 
 
-    if ( gName == "" || gbodyStyle == "" ){
-        alert("please enter a body style and body color");
-        return;
-    } else 
-    {
+
     var gName = document.getElementById("customName").value;
     var gbodyStyle = document.getElementById("bodyStyle").value;
     var gbodyColor = document.getElementById("bodyColor").value;
@@ -67,9 +63,13 @@ function confirm(event){
 
 
     var index = +ckVal;
-    
+     
 }
-
+    if ( gbodyStyle == "Select" || gbodyColor == "Select" ||  gName == "" ){
+        highlightFields();
+       
+  } else 
+    {
         var x = event.target;
         
         
@@ -408,4 +408,33 @@ function qtyChanged(event){
             } 
 
         updateTotal();
+}
+
+function highlightFields(){
+
+    var i = 0;
+    var msg = "";
+    var name = document.getElementById('customName').value;
+    var style = document.getElementById('bodyStyle').value;
+    var gcolor = document.getElementById('bodyColor').value;
+    alert(style + name + gcolor);
+    if ( style == "Select" || gcolor == "Select" || name == ""){
+
+            msg += "Name, Body Style and Color are required.";
+
+            if ( name == "" ){
+            document.getElementById('customName').style = "border: 1px solid red";
+            }
+
+
+            if ( style == "Select" ){
+            document.getElementById('bodyStyle').style = "border: 1px solid red";
+            }
+
+            if ( gcolor == "Select" ){
+            document.getElementById('bodyColor').style = "border: 1px solid red";
+            }
+
+        }
+    alert(msg);
 }

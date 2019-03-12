@@ -48,7 +48,9 @@ function ready(){
 
             var len = GetCookie("BtnClk");
             console.log(len);
-
+            if ( GetCookie("BtnClk") == null ){
+                return;
+            } else {
             for ( var i = 0; i < len; i++){
 
                var itemName = GetCookie("Name" + i);
@@ -108,7 +110,7 @@ function ready(){
         cartRow.append(placeCart);
         }
     
-
+}
         document.getElementById('tot').innerHTML = "$" + cartTotal;
 
 
@@ -116,7 +118,28 @@ function ready(){
            document.getElementById('sendAxe').addEventListener('click', thankyou);
 }
 
+function DeleteCookie (name) {
+   var exp = new Date();
+   exp.setTime (exp.getTime() - 1); // This cookie is history
+   var cval = GetCookie (name);
+   document.cookie = name + "=" + cval + "; expires=" + exp.toGMTString();
+} 
+
+
+
 function thankyou(){
+
+    var x = GetCookie("BtnClk");
+
+    for ( var i = 0; i < x; i++){
+
+        DeleteCookie("Name" + i);
+        DeleteCookie("Desc" + i);
+        DeleteCookie("Qty" + i);
+        DeleteCookie("Price" + i);
+        DeleteCookie("BtnClk");
+        DeleteCookie("CartTotal" + i);
+    }
 
     location.replace("thankyou.html");
 
