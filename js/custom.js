@@ -51,7 +51,7 @@ function confirm(event){
 
     var customDesc = "Body Style: " + gbodyStyle + ", Color: " + gbodyColor + ", Fret Board: " + gFretBoard + ", Fret Board Inlay: " + gInlay + ", Hardware: " + gHardware + ", Fret Type: " + gFretType;
 
-
+    console.log(gName);
 
     var ckVal = GetCookie("BtnClk");
     if (ckVal == null || isNaN(ckVal)){
