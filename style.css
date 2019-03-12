@@ -528,6 +528,16 @@ h4
 
 }
 
+.custom-add
+{
+
+	position: absolute;
+	right: 15px;
+	margin-top: 15px;
+	font-size 200pt;
+
+}
+
 @media (max-width: 640px)
 {
 	
