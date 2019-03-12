@@ -100,6 +100,7 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<h2>Customize Your Axe</h2>
+				<p>Add $1000 for any custom order. Also, if no options are selected, standard enchancements are chrome hardware and tuners, standard frets, and rosewood fretboard with plastic inlay.
 			</div>
 		</div>
 </div>
@@ -112,14 +113,14 @@
 
 		<div class="col-sm-12 col-lg-4">
 		
-	 			 <form name="myForm">
+	 	<form name="myForm">
 
 
 			<div class="col-sm-12 col-lg-12">
 
 			    	<label for="bodyStyle">Choose Your Body Style</label>
 
-			      	<select class="form-control" id="bodyStyle" placeholder="Choose Body Style">
+			      	<select class="form-control" id="bodyStyle" placeholder="Choose Body Style" required="">
 				      		<option>Select</option>
 				      		<option>Les Paul</option>
 				      		<option>Strat</option>
@@ -136,7 +137,7 @@
 			<div class="col-sm-12 col-lg-12">
 
 				<label for="bodyColor">Choose Your Body Color</label>
-			      <select class="form-control" id="bodyColor" placeholder="Choose Body Color">
+			      <select class="form-control" id="bodyColor" placeholder="Choose Body Color" required>
 			      		<option>Select</option>
 			      		<option>Black Abyss</option>
 			      		<option>Angelic White</option>
@@ -176,6 +177,8 @@
 				      		
 
 			</div>
+
+
 
 		</div>
 		
@@ -227,14 +230,19 @@
 			<div class="col-sm-12 col-lg-12">
 
 		    	<label for="customName">Name This Beauty</label>
-		      	<input type="text" class="form-control" id="customName" placeholder="Gimme a Name">
+		      	<input type="text" class="form-control" id="customName" placeholder="Gimme a Name" required>
 
 			</div>
+
+			<div class="col-sm-12">
+					<button class="btn btn-success btn-add custom-add" id="sendAxe" type="button">Add</button>
+			</div>
+					
 		</div>
 	
 
 
-				<div class="col-sm-12 col-lg-4">
+		<div class="col-sm-12 col-lg-4">
 					<div class="row row-cart">
 						<div class="col-sm-12 ">			
 								<h3>Cart</h3>
@@ -243,7 +251,7 @@
 
 
 					
-					<div class="col-sm-12 col-lg-12">
+			<div class="col-sm-12 col-lg-12">
 						<span class="item-heading-title">Item</span>
 						
 						
@@ -265,24 +273,17 @@
 						<button type="button" class="btn-sm btn-success btn-checkout" id="checkout">Check Out</button>
 				</div>		
 			
-					</div>
 				</div>
 			</div>
-
-				
-					<div class="row">
-					  
-					 <div class="col-sm-12 col-lg-3">
-						<div class="col-sm-12">
-							<br />
-							<button class="btn btn-success btn-add" id="sendAxe" type="button">Add</button>
-						</div>
-					</div>
-				</div>
-
-			</form>
-
 		</div>
+					  
+
+				</form>
+		</div>
+
+		
+
+	</div>
 
 
 </div>
