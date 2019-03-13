@@ -476,6 +476,8 @@ h4
 	color: #4B93B0;
 	width: 200px;
 	margin: 25px 0;
+	position: relative;
+	left: 135px;
 }
 
 .confirm-btn

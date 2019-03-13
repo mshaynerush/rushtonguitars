@@ -53,7 +53,7 @@ function confirm(event){
     if (ckVal == null || isNaN(ckVal)){
         ckVal = 0;
 
-        
+        console.log("ckVal", ckVal)
 
         var index = +ckVal;
 
@@ -63,7 +63,7 @@ function confirm(event){
 
 
     var index = +ckVal;
-     
+     console.log("Index", index);
 }
     if ( gbodyStyle == "Select" || gbodyColor == "Select" ||  gName == "" ){
         highlightFields();
@@ -252,24 +252,25 @@ function loadCart(){
 
   var ckVal = GetCookie("BtnClk");
     if (ckVal == null){
- 
+        console.log("ckVal", ckVal);
         return;
     } else {
 
        idx = Number(GetCookie("BtnClk"));
- 
+        console.log("idx",idx)
     }
   
        
-        for (var i = 0; i < idx; i++){
+        for (var i = 0; i < idx+10; i++){
           var itemName = GetCookie("Name" + i);
+          if (itemName == null){
+            continue;
+          }
           var itemDesc = GetCookie("Desc" + i);
           var itemPrice = GetCookie("Price" + i);
           var itemQty = GetCookie("Qty" + i);
           var cartTotal = GetCookie("CartTotal");
 
-
-          
          
 
           var cartRow = document.getElementsByClassName('item-row')[0];
@@ -335,22 +336,33 @@ function removeItem(event){
           var itemName = removeItem.getElementsByClassName('cart-item-name')[0].innerText;
         
           var itemLength = GetCookie("BtnClk");
-          
-            for ( var i = 0; i < itemLength; i++ ){
+      
+           for ( var i = 0; i < itemLength+10; i++ ){
+         
+                if ( GetCookie("Name" + i) == null){
 
+                    continue;
+                    alert(GetCookie("Name" +i))
+                } 
                 if ( GetCookie("Name" + i) == itemName) {
-              
+                  
                     var rowID = i;
                 }
-              }
+              
 
               DeleteCookie("Name" + rowID);
-              DeleteCookie("Desc" + rowID);
+              DeleteCookie("CustomDesc" + rowID);
+              DeleteCookie("Desc" + rowID)
               DeleteCookie("Price" + rowID);
               DeleteCookie("Qty" + rowID);
               SetCookie("BtnClk", GetCookie("BtnClk") - 1);
 
+            }
 
+                var cookieVal = GetCookie("BtnClk")
+                if (cookieVal < 0){
+                  SetCookie("BtnClk", 0)
+                } 
 
        removeItem.remove();
 
@@ -375,18 +387,27 @@ function updateTotal(){
 
             qtyVal = parseInt(qty[i].value);
             var priceElement = price[i].innerText;
-            var priceVal = parseFloat(priceElement.replace('$',''));
-            total += priceVal * qtyVal
 
+              if (priceElement == null){
+      
+                continue;
+              } else if (isNaN(qtyVal)){
+    
+                continue;
+              }
+
+            var priceVal = parseFloat(priceElement.replace('$',''));
+            total += parseInt(priceVal) * parseInt(qtyVal)
+              var cartTotal = total;
               
-             console.log( qtyVal, priceVal, total);
+  
 
         }
 
 
        document.getElementById("cartTotal").innerHTML = "$" + total;
         
-        SetCookie("CartTotal", total);
+        SetCookie("CartTotal", parseInt(total));
 }
 
 
