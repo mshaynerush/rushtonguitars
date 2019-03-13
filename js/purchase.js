@@ -23,6 +23,8 @@ function ready(){
           var Email = GetCookie('Email');
           var Phone = GetCookie('Phone');
 
+        
+
     var custInfo = document.getElementById('custInfoBlock');
 
         var placeInfo = document.createElement('div');
@@ -47,7 +49,6 @@ function ready(){
 
 
             var len = GetCookie("BtnClk");
-            console.log(len);
             if ( GetCookie("BtnClk") == null ){
                 return;
             } else {

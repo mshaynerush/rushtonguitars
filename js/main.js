@@ -115,11 +115,11 @@ function loadCart(){
 
   var ckVal = GetCookie("BtnClk");
     if (ckVal == null){
-       console.log(ckVal);
+  
         return;
     } else if (ckVal != null){ 
         idx = Number(GetCookie("BtnClk"));
-         console.log(idx);
+        
       
     }
   
@@ -281,7 +281,7 @@ function updateTotal(){
 
     var cartRow = document.getElementsByClassName('item-row')[0];
     var price = document.getElementsByClassName('cart-item-price');
-    console.log(price);
+  
     var qty = cartRow.getElementsByTagName('input');
     
     var total = 0;
@@ -289,16 +289,19 @@ function updateTotal(){
   
         for ( var i = 0; i < qty.length; i++ ){
 
-            qtyVal = qtyVal + parseInt(qty[i].value);
+            qtyVal = parseInt(qty[i].value);
             var priceElement = price[i].innerText;
-            var priceVal = priceElement.replace('$','');
+            var priceVal = parseFloat(priceElement.replace('$',''));
+            total += priceVal * qtyVal
 
-            total = total + qtyVal * priceVal;
+              
+             console.log( qtyVal, priceVal, total);
 
         }
 
+
        document.getElementById("cartTotal").innerHTML = "$" + total;
-        console.log(qtyVal, priceElement, priceVal, total);
+        
         SetCookie("CartTotal", total);
 }
 
@@ -308,7 +311,7 @@ function checkout(event){
     var isName = GetCookie("FirstName");
 
       if ( isName != null ){
-    console.log(isName);
+  
     location.replace('confirm.html');
     
   } else if(document.cookie == "") {

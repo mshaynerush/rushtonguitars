@@ -47,7 +47,7 @@ function confirm(event){
 
     var customDesc = "Body Style: " + gbodyStyle + ", Color: " + gbodyColor + ", Fret Board: " + gFretBoard + ", Fret Board Inlay: " + gInlay + ", Hardware: " + gHardware + ", Fret Type: " + gFretType;
 
-    console.log(gName);
+    
 
     var ckVal = GetCookie("BtnClk");
     if (ckVal == null || isNaN(ckVal)){
@@ -359,11 +359,13 @@ function removeItem(event){
        updateTotal();
 
 }
+
 function updateTotal(){
 
 
     var cartRow = document.getElementsByClassName('item-row')[0];
     var price = document.getElementsByClassName('cart-item-price');
+  
     var qty = cartRow.getElementsByTagName('input');
     
     var total = 0;
@@ -371,15 +373,19 @@ function updateTotal(){
   
         for ( var i = 0; i < qty.length; i++ ){
 
-            qtyVal = qtyVal + parseInt(qty[i].value);
+            qtyVal = parseInt(qty[i].value);
             var priceElement = price[i].innerText;
-            var priceVal = priceElement.replace('$','');
+            var priceVal = parseFloat(priceElement.replace('$',''));
+            total += priceVal * qtyVal
 
-            total = total + qtyVal * priceVal;
+              
+             console.log( qtyVal, priceVal, total);
 
         }
 
+
        document.getElementById("cartTotal").innerHTML = "$" + total;
+        
         SetCookie("CartTotal", total);
 }
 
@@ -389,7 +395,7 @@ function checkout(event){
     var isName = GetCookie("FirstName");
 
       if ( isName != null ){
-    console.log(isName);
+    
     location.replace('confirm.html');
     
   } else if(document.cookie == "") {
