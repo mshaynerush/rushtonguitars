@@ -48,21 +48,27 @@ function ready(){
             custInfo.append(placeInfo);
 
 
-            var len = GetCookie("BtnClk");
-            if ( GetCookie("BtnClk") == null ){
-                return;
+            var len = GetCookie("CustomBtnClk");
+            if ( GetCookie("CustomBtnClk") == null ){
+                len = GetCookie("BtnClk");
+                }
+
+            if ( GetCookie("BtnClk") == null) {return;
             } else {
             for ( var i = 0; i < len; i++){
 
                var itemName = GetCookie("Name" + i);
                var itemQty = GetCookie("Qty" + i);
                 var itemPrice = GetCookie("Price" + i);
+                if ( itemPrice == null ){
+                  continue;
+                }
                 var priceElement = itemPrice.replace('$', '');
                 var itemDesc = GetCookie("Desc" + i);
                 var price = parseFloat(priceElement);
                 var subTot = itemQty * price;
             
-
+                  console.log(GetCookie("Price0"))
         var cartRow = document.getElementById('cartContentBlock')
         var placeCart = document.createElement('div');
             
@@ -94,7 +100,7 @@ function ready(){
 
                 <div class="col-12 cart-headings item">
                     
-                    <div class="col-4 cart-label">${itemName}</div><div class="col-3 cart-label">${itemQty}</div><div class="col-2 cart-label">${itemPrice}</div><div class="col-3 cart-label">${subTot}</div>
+                    <div class="col-4 cart-label">${itemName}</div><div class="col-3 cart-label">${itemQty}</div><div class="col-2 cart-label">${itemPrice}</div><div class="col-3 cart-label">$${subTot}</div>
                     
                 </div>
             </div>
@@ -104,6 +110,8 @@ function ready(){
                 <div class="col-12 cart-desc-confirm">Item Description: ${itemDesc}</div>
 
             </div>
+
+            <div class="green-line"></div>
 
             `
         }
@@ -130,9 +138,36 @@ function DeleteCookie (name) {
 
 function thankyou(){
 
-    var x = GetCookie("BtnClk");
+          var custom = GetCookie("CustomBtnClk");
+      var feature = GetCookie("BtnClk");
+        if ( custom == null && feature != null ){
+          var idx = feature;
+        }
+
+        if ( feature == null && custom == null ){
+          var idx = 0
+
+        } else {
+
+          var idx = feature;
+        }
+
+        var maxLen = document.cookie.split(";").length;
+ console.log(maxLen);
+        var x = 0;
+        for ( var i = 0; i < maxLen; i++){
+
+          
+          var itemName = GetCookie("Name" + i );
+          console.log(itemName);
+          if ( itemName != null );
+          x++
+          continue;
+          
+        }
 
     for ( var i = 0; i < x; i++){
+      
 
         DeleteCookie("Name" + i);
         DeleteCookie("Desc" + i);

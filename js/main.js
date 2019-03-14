@@ -113,35 +113,56 @@ function loadCart(){
 
   document.getElementById('cartItems').innerHTML = "";
 
-  var ckVal = GetCookie("BtnClk");
-    if (ckVal == null){
-  
-        return;
-    } else if (ckVal != null){ 
-        idx = Number(GetCookie("BtnClk"));
+      var custom = GetCookie("CustomBtnClk");
+      var feature = GetCookie("BtnClk");
+        if ( custom == null && feature != null ){
+          var idx = feature;
+        }
+
+        if ( feature == null && custom == null ){
+          var idx = 0
+
+        } else {
+
+          var idx = feature;
+        }
+
+        var maxLen = document.cookie.split(";").length;
+ console.log(maxLen);
+        var x = 0;
+        for ( var i = 0; i < maxLen; i++){
+
+          
+          var itemName = GetCookie("Name" + i );
+          console.log(itemName);
+          if ( itemName != null );
+          x++
+          continue;
+          
+        }
+  console.log(x);
+      for (var i = 0; i < x; i++){
         
-      
-    }
-  
 
-
-
-        for (var i = 0; i < idx+10; i++){
-
-
-
-          var itemName = GetCookie("Name" + i);
-          if (itemName == null){
-           continue;
+    console.log(i);
+     
+      var itemName = GetCookie( "Name" + i )
+          if ( itemName == null ){
+                
+        
+            continue;
           }
+        
+
+
           var itemDesc = GetCookie("Desc" + i);
           var itemPrice = GetCookie("Price" + i);
           var itemQty = GetCookie("Qty" + i);
           var cartTotal = GetCookie("CartTotal");
 
-       
-          
-         
+          console.log(i, idx, itemDesc, itemPrice, itemQty, cartTotal);
+
+     
 
           var cartRow = document.getElementsByClassName('item-row')[0];
 
@@ -162,15 +183,39 @@ function loadCart(){
 
           itemRow.innerHTML = itemContent;
           cartRow.append(itemRow);
+}
 
+          var input = document.getElementsByClassName('cart-quantity-input');
+            for ( var i = 0; i < input.length; i++){
 
-
+                    inputChanged = input[i];
+                    inputChanged.addEventListener('change', qtyChanged);
+            
 
         }
-      
 
           document.getElementsByClassName('cartTotal').innerHTML = "$" + cartTotal;
-        
+
+        var input = document.getElementsByClassName('input');
+
+            for ( var i = 0; i < input.length; i++){
+
+                var inputChanged = input[i];
+                    inputChanged.addEventListener('change', qtyChanged);
+            }
+
+        var remove = document.getElementsByClassName('btn-danger');
+
+            for ( var i = 0; i < remove.length; i++){
+
+                var removeChanged = remove[i];
+                    removeChanged.addEventListener('click', removeItem);
+            }
+
+           // addCustom();
+            updateTotal();
+
+    
 } 
 
 function addToCart(event){
@@ -183,22 +228,57 @@ function addToCart(event){
           var itemDesc = myRow.getElementsByClassName('item-desc')[0].innerText;
           var itemQty = 1;
           var itemPrice = myRow.getElementsByClassName('item-price-value')[0].innerText;
-          var cartItems = document.getElementsByClassName('item-row')[0];
-          var cartItemNames = cartItems.getElementsByClassName('cart-item-name')
-            for (var i = 0; i < cartItemNames.length; i++) {
+          var btnClick = GetCookie("BtnClk");
+            var btnIndex = +btnClick;
+              if ( btnIndex == null ){
+                btnIndex = 0;
+              } else 
+            var cartItemNames = cartItems.getElementsByClassName('cart-item-name')
+                        for (var i = 0; i < cartItemNames.length; i++) {
                 if (cartItemNames[i].innerText == itemName) {
                     alert('This item is already added to the cart')
                     return;
                 }
 
             } 
+            switch (itemName){
 
+              case "The Terminator":
+                var i = 0;
+                break;
+
+              case "The Perpetrator":
+                var i = 1;
+                break;
+
+              case "The Decimator":
+                var i = 2;
+                break;
+
+              case "The Calculator":
+                var i = 3;
+                break;
+
+              case "The Peacemaker":
+                var i = 4;
+                break;
+
+              case "The Romancer":
+                var i = 5;
+                break;
+
+
+
+            }
+
+ 
               SetCookie("Name" + i, itemName);
               SetCookie("Desc" + i, itemDesc);
               SetCookie("Price" + i, itemPrice);
               SetCookie("Qty" + i, itemQty);
-              SetCookie("BtnClk", i + 1);
+              SetCookie("BtnClk", btnIndex + 1)
               loadCart();
+
 
               
               var myInputAdded = document.getElementsByClassName('cart-quantity-input');
@@ -215,8 +295,9 @@ function addToCart(event){
 
                   }
                   updateTotal();
+          }
 
-}
+
 
 function qtyChanged(event){
 
@@ -262,25 +343,46 @@ function removeItem(event){
         
           var itemLength = GetCookie("BtnClk");
 
+          var btnClick = parseInt(itemLength);
+      
+               switch (itemName){
 
-          
-            for ( var i = 0; i < itemLength+10; i++ ){
+              case "The Terminator":
+                var i = 0;
+                break;
 
-                if ( GetCookie("Name" + i) == null){
-                    continue;
-                } 
-                if ( GetCookie("Name" + i) == itemName) {
-                  
-                    var rowID = i;
-                }
-              }
+              case "The Perpetrator":
+                var i = 1;
+                break;
 
-              DeleteCookie("Name" + rowID);
-              DeleteCookie("Desc" + rowID);
-              DeleteCookie("Price" + rowID);
-              DeleteCookie("Qty" + rowID);
-              SetCookie("BtnClk", GetCookie("BtnClk") - 1);
-                
+              case "The Decimator":
+                var i = 2;
+                break;
+
+              case "The Calculator":
+                var i = 3;
+                break;
+
+              case "The Peacemaker":
+                var i = 4;
+                break;
+
+              case "The Romancer":
+                var i = 5;
+                break;
+
+            }
+              
+
+              DeleteCookie("Name" + i);
+              DeleteCookie("CustomDesc" + i);
+              DeleteCookie("Desc" + i)
+              DeleteCookie("Price" + i);
+              DeleteCookie("Qty" + i);
+              SetCookie("BtnClk", itemLength- 1);
+
+            
+
                 var cookieVal = GetCookie("BtnClk")
                 if (cookieVal < 0){
                   SetCookie("BtnClk", 0)
@@ -292,7 +394,7 @@ function removeItem(event){
 
        updateTotal();
 
-}
+} 
 
 function updateTotal(){
 
@@ -348,3 +450,50 @@ function checkout(event){
   }
 }
 
+function addCustom(){
+
+        var idx = GetCookie("CustomBtnClk");
+          
+          if ( idx == null ){
+            return
+          }
+        
+        for (var i = 5; i < idx; i++){
+  
+
+
+          var itemName = GetCookie( "Name" + i )
+          if ( itemName == null ){
+            idx++
+            continue;
+          }
+          var itemDesc = GetCookie("Desc" + i);
+          var itemPrice = GetCookie("Price" + i);
+          var itemQty = GetCookie("Qty" + i);
+          var cartTotal = GetCookie("CartTotal");
+
+         
+
+          var cartRow = document.getElementsByClassName('item-row')[0];
+
+          var itemRow = document.createElement('div');
+              itemRow.classList.add('cart-item');
+
+          var itemContent =
+
+            `
+                    <div class="cart-item-name">${itemName}</div>
+                    <div class="cart-item-price">${itemPrice}</div>
+                    <div class="cart-qty-input"><input type="number" step="1" value="${itemQty}" class="form-control cart-quantity-input"></div>
+                    <div class="remove-btn"><button class="cart-item-btn-remove btn-sm btn-danger">Remove</button></div>
+                    <div class="remove-btn" id="${i}"><button class="cart-item-btn-remove-x btn-sm btn-danger" id="${i}">x</button></div>
+                    <br /><br />
+
+          `
+
+          itemRow.innerHTML = itemContent;
+          cartRow.append(itemRow);
+      }
+
+      updateTotal();
+}

@@ -49,11 +49,11 @@ function confirm(event){
 
     
 
-    var ckVal = GetCookie("BtnClk");
+    var ckVal = GetCookie("CustomBtnClk");
     if (ckVal == null || isNaN(ckVal)){
-        ckVal = 0;
+        ckVal = 6;
 
-        console.log("ckVal", ckVal)
+    
 
         var index = +ckVal;
 
@@ -94,10 +94,11 @@ function confirm(event){
        SetCookie("Name" + index, gName);
        SetCookie("Qty" + index, 1);
        SetCookie("Price" + index, "$1000");
-       SetCookie("CustomDesc" + index, customDesc);
+       SetCookie("Desc" + index, customDesc);
        SetCookie("CartTotal", addCustomCost);
-       SetCookie("BtnClk", +index + 1);
-    
+       SetCookie("CustomBtnClk", +index + 1);
+      
+        addCustom();
 
         updateTotal();
        loadCart();
@@ -250,28 +251,58 @@ function loadCart(){
 
   document.getElementById('cartItems').innerHTML = "";
 
-  var ckVal = GetCookie("BtnClk");
-    if (ckVal == null){
-        console.log("ckVal", ckVal);
-        return;
-    } else {
+      var custom = GetCookie("CustomBtnClk");
+          var feature = GetCookie("BtnClk");
+        if ( custom == null && feature != null){
+          var idx = feature;
+        }
 
-       idx = Number(GetCookie("BtnClk"));
-        console.log("idx",idx)
-    }
-  
-       
-        for (var i = 0; i < idx+10; i++){
-          var itemName = GetCookie("Name" + i);
-          if (itemName == null){
+        if ( feature == null && custom == null ){
+            idx = 6
+
+        } else {
+
+          var idx = feature;
+        }
+
+        console.log(idx);
+
+              var maxLen = document.cookie.split(";").length;
+ console.log(maxLen);
+        var x = 0;
+        for ( var i = 0; i < maxLen; i++){
+
+          
+          var itemName = GetCookie("Name" + i );
+          console.log(itemName);
+          if ( itemName != null );
+          x++
+          continue;
+          
+        }
+ 
+      for (var i = 0; i < x; i++){
+        
+
+    
+     
+      var itemName = GetCookie( "Name" + i )
+          if ( itemName == null ){
+                
+        
             continue;
           }
+        
+
+
           var itemDesc = GetCookie("Desc" + i);
           var itemPrice = GetCookie("Price" + i);
           var itemQty = GetCookie("Qty" + i);
           var cartTotal = GetCookie("CartTotal");
 
-         
+          console.log(i, idx, itemDesc, itemPrice, itemQty, cartTotal);
+
+     
 
           var cartRow = document.getElementsByClassName('item-row')[0];
 
@@ -292,8 +323,8 @@ function loadCart(){
 
           itemRow.innerHTML = itemContent;
           cartRow.append(itemRow);
-
 }
+
           var input = document.getElementsByClassName('cart-quantity-input');
             for ( var i = 0; i < input.length; i++){
 
@@ -320,10 +351,13 @@ function loadCart(){
                 var removeChanged = remove[i];
                     removeChanged.addEventListener('click', removeItem);
             }
-            updateTotal()
 
-        
+           // addCustom();
+            updateTotal();
+
+    
 } 
+
 
 function removeItem(event){
 
@@ -336,28 +370,46 @@ function removeItem(event){
           var itemName = removeItem.getElementsByClassName('cart-item-name')[0].innerText;
         
           var itemLength = GetCookie("BtnClk");
+
+          var btnClick = parseInt(itemLength);
       
-           for ( var i = 0; i < itemLength+10; i++ ){
-         
-                if ( GetCookie("Name" + i) == null){
+               switch (itemName){
 
-                    continue;
-                    alert(GetCookie("Name" +i))
-                } 
-                if ( GetCookie("Name" + i) == itemName) {
-                  
-                    var rowID = i;
-                }
-              
+              case "The Terminator":
+                var i = 0;
+                break;
 
-              DeleteCookie("Name" + rowID);
-              DeleteCookie("CustomDesc" + rowID);
-              DeleteCookie("Desc" + rowID)
-              DeleteCookie("Price" + rowID);
-              DeleteCookie("Qty" + rowID);
-              SetCookie("BtnClk", GetCookie("BtnClk") - 1);
+              case "The Perpetrator":
+                var i = 1;
+                break;
+
+              case "The Decimator":
+                var i = 2;
+                break;
+
+              case "The Calculator":
+                var i = 3;
+                break;
+
+              case "The Peacemaker":
+                var i = 4;
+                break;
+
+              case "The Romancer":
+                var i = 5;
+                break;
 
             }
+              
+
+              DeleteCookie("Name" + i);
+              DeleteCookie("CustomDesc" + i);
+              DeleteCookie("Desc" + i)
+              DeleteCookie("Price" + i);
+              DeleteCookie("Qty" + i);
+              SetCookie("BtnClk", itemLength- 1);
+
+            
 
                 var cookieVal = GetCookie("BtnClk")
                 if (cookieVal < 0){
@@ -370,18 +422,22 @@ function removeItem(event){
 
        updateTotal();
 
-}
+} 
+
+
 
 function updateTotal(){
 
 
-    var cartRow = document.getElementsByClassName('item-row')[0];
+    var cartRow = document.getElementById('cartItems');
+
+
     var price = document.getElementsByClassName('cart-item-price');
   
     var qty = cartRow.getElementsByTagName('input');
     
     var total = 0;
-    var qtyVal = 0;
+    var qtyVal = 0; 
   
         for ( var i = 0; i < qty.length; i++ ){
 
@@ -464,4 +520,50 @@ function highlightFields(){
 
         }
     alert(msg);
+}
+
+function addCustom(){
+  document.getElementById('cartItems').innerHTML = "";
+
+
+      var idx = GetCookie("CucstomBtnClk");
+      
+        for (var i = 0; i < idx; i++){
+  
+
+
+          var itemName = GetCookie( "Name" + i )
+          if ( itemName == null ){
+            idx++
+            continue;
+          }
+          var itemDesc = GetCookie("Desc" + i);
+          var itemCustomDesc = GetCookie("Desc" + i)
+          var itemPrice = GetCookie("Price" + i);
+          var itemQty = GetCookie("Qty" + i);
+          var cartTotal = GetCookie("CartTotal");
+
+         
+
+          var cartRow = document.getElementsByClassName('item-row')[0];
+
+          var itemRow = document.createElement('div');
+              itemRow.classList.add('cart-item');
+
+          var itemContent =
+
+            `
+                    <div class="cart-item-name">${itemName}</div>
+                    <div class="cart-item-price">${itemPrice}</div>
+                    <div class="cart-qty-input"><input type="number" step="1" value="${itemQty}" class="form-control cart-quantity-input"></div>
+                    <div class="remove-btn"><button class="cart-item-btn-remove btn-sm btn-danger">Remove</button></div>
+                    <div class="remove-btn" id="${i}"><button class="cart-item-btn-remove-x btn-sm btn-danger" id="${i}">x</button></div>
+                    <br /><br />
+
+          `
+
+          itemRow.innerHTML = itemContent;
+          cartRow.append(itemRow);
+
+}
 }
