@@ -48,14 +48,35 @@ function ready(){
             custInfo.append(placeInfo);
 
 
-            var len = GetCookie("CustomBtnClk");
-            if ( GetCookie("CustomBtnClk") == null ){
-                len = GetCookie("BtnClk");
-                }
+      var custom = GetCookie("CustomBtnClk");
+      var feature = GetCookie("BtnClk");
+        if ( custom == null && feature != null ){
+          var idx = feature;
+        }
 
-            if ( GetCookie("BtnClk") == null) {return;
-            } else {
-            for ( var i = 0; i < len; i++){
+        if ( feature == null && custom == null ){
+          var idx = 0
+
+        } else {
+
+          var idx = feature;
+        }
+
+        var maxLen = document.cookie.split(";").length;
+ console.log(maxLen);
+        var x = 0;
+        for ( var i = 0; i < maxLen; i++){
+
+          
+          var itemName = GetCookie("Name" + i );
+          console.log(itemName);
+          if ( itemName != null );
+          x++
+          continue;
+          
+        }
+  console.log(x);
+      for (var i = 0; i < x; i++){
 
                var itemName = GetCookie("Name" + i);
                var itemQty = GetCookie("Qty" + i);
@@ -117,7 +138,7 @@ function ready(){
         }
         placeCart.innerHTML = confirmCartContent;
         cartRow.append(placeCart);
-        }
+        
     
 }
         document.getElementById('tot').innerHTML = "$" + cartTotal;
