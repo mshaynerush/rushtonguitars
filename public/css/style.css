@@ -1,0 +1,57 @@
+.full
+{
+  width: 100%;
+  background-color: hsl(187, 47%, 37%);
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+}
+
+.full ul li
+{
+  transition: all 250ms ease-in-out;
+  margin: 0;
+  padding: 10px;
+}
+
+.full ul li:hover
+{
+  background-color: hsl(187, 47%, 27%);
+}
+
+.tile
+{
+  height: 500px;
+  margin-top: 10px;
+}
+.tile-header
+{
+  background: hsl(187, 47%, 37%);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #FFF;
+  height: 10%;
+  display: flex;
+  padding: 1%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tile-body
+{
+  width: 100%;
+  height: 55%;
+}
+
+.tile-body img
+{
+  width: 100%;
+  height: 100%;
+}
+
+.tile-detail
+{
+  background: hsl(187, 47%, 37%);
+  padding: 15px;
+  height: 30%;
+}
