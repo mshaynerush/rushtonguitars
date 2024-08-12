@@ -56,7 +56,7 @@
   height: 30%;
 }
 
-.nav-link, .nav-link:hover
+.nav-link, .nav-link a:hover
 {
   font-size: 1.2em;
   color: #FFF; !important
