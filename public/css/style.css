@@ -56,7 +56,9 @@
   height: 30%;
 }
 
-.nav-link
+.nav-link, .nav-link active
 {
   color: #FFF;
 }
+
+
